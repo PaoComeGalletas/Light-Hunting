@@ -7,13 +7,16 @@ public class CharController_Motor : MonoBehaviour
     public float speed = 10.0f;
     public float sensitivity = 30.0f;
     public float WaterHeight = 15.5f;
-    CharacterController character;
+    private CharacterController character; // Cambio: Declarar la variable como 'private' en lugar de 'public'
     public GameObject cam;
     float moveFB, moveLR;
     float rotX, rotY;
     public bool webGLRightClickRotation = true;
     float gravity = -9.8f;
     bool cursorLocked = true;
+
+    public float jumpForce = 10.0f; // Fuerza del salto.
+    bool isGrounded = false;
 
     void Start()
     {
@@ -50,6 +53,16 @@ public class CharController_Motor : MonoBehaviour
         CheckForWaterHeight();
 
         CameraRotation(cam, rotX, rotY);
+
+        isGrounded = character.isGrounded; // Comprueba si el personaje está en el suelo.
+
+        if (isGrounded)
+        {
+            if (Input.GetKeyDown("space")) // Detecta si se ha presionado la tecla de salto.
+            {
+                character.Move(Vector3.up * jumpForce * Time.deltaTime); // Aplica la fuerza de salto.
+            }
+        }
 
         Vector3 movement = new Vector3(moveFB, gravity, moveLR);
         movement = transform.rotation * movement;
