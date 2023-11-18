@@ -260,4 +260,4 @@ MonoBehaviour:
   clave: global
   target: {fileID: 5171563467893049136}
   alerta: {fileID: 0}
-  textoAlerta: presiona E para usar llave
+  textoAlerta: The Door is Locked

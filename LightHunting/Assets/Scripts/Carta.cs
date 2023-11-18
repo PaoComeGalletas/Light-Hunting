@@ -12,7 +12,7 @@ public class Carta : MonoBehaviour
     public GameObject alerta;
 
     public string texto;
-    public string textoAlerta;
+    public string textoAlerta = "Press E to read the letter";
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player")
         {

@@ -13,7 +13,7 @@ public class Puerta : MonoBehaviour
     public string clave="global";
     public GameObject target;
     public GameObject alerta;
-    public string textoAlerta = "Consigue la llave para usar esta puerta";
+    public string textoAlerta = "The door is locked";
     private bool cerrada = true;
 
     // Start is called before the first frame update
@@ -36,10 +36,11 @@ public class Puerta : MonoBehaviour
             alerta.gameObject.SetActive(true);
             if (other.GetComponent<Inventario>().llaves.Contains(clave))
             {
-                textoAlerta = "Presiona E para abrir la puerta";
-                if (Input.GetKeyDown("e")){
+                textoAlerta = "Press E to open the door";
+                if (Input.GetKey("e")){
                     targetValue = AngleY;
                     currentValue = 0.0f;
+                    other.GetComponent<Inventario>().llaves.Remove(clave);
                     cerrada = false;
                     alerta.gameObject.SetActive(false);
                 }
