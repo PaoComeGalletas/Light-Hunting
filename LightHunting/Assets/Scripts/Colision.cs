@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Colision : MonoBehaviour
 {
@@ -67,7 +68,7 @@ public class Colision : MonoBehaviour
             }  
         }
 
-        if(objeto.gameObject.tag=="Master key"){
+        if(objeto.gameObject.tag=="Master key" ){
             alerta.GetComponent<Text>().text = textoAlertaMKey.ToString();
             alerta.gameObject.SetActive(true);
 
@@ -80,6 +81,26 @@ public class Colision : MonoBehaviour
                 alerta.gameObject.SetActive(false);
             }  
         }
+
+        if(objeto.gameObject.tag=="Final key" ){
+            alerta.GetComponent<Text>().text = textoAlertaMKey.ToString();
+            alerta.gameObject.SetActive(true);
+
+            if(Input.GetKey("e")){
+                this.GetComponent<Inventario>().llaves.Add("final key");
+                Destroy(objeto.gameObject);
+                audioSource.PlayOneShot(clipKey);
+                Mkey+=1;
+                txtMKey.GetComponent<Text>().text=Mkey.ToString(); 
+                alerta.gameObject.SetActive(false);
+            }  
+        }
+
+        if(objeto.gameObject.tag=="Final border"){
+            Cursor.lockState = CursorLockMode.None; // Esto desbloquea el cursor
+            Cursor.visible = true; // Esto hace que el cursor sea visible
+            SceneManager.LoadScene("Win"); 
+        }
         
     }
 
@@ -91,8 +112,10 @@ public class Colision : MonoBehaviour
     }
 
     public void restarLlave(){
-        key-=1;
-        txtKey.GetComponent<Text>().text=key.ToString(); 
+        if (Mkey > 0){
+            Mkey -= 1;
+            txtMKey.GetComponent<Text>().text = Mkey.ToString();
+        }
     }
 
     public void restarLlaveMaestra(){

@@ -9,6 +9,8 @@ TagManager:
   - Master key
   - puerta madera
   - puerta hierro
+  - Final key
+  - Final border
   layers:
   - Default
   - TransparentFX
