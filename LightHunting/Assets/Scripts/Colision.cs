@@ -112,9 +112,9 @@ public class Colision : MonoBehaviour
     }
 
     public void restarLlave(){
-        if (Mkey > 0){
-            Mkey -= 1;
-            txtMKey.GetComponent<Text>().text = Mkey.ToString();
+        if (key >= 0){
+            key -= 1;
+            txtKey.GetComponent<Text>().text = Mkey.ToString();
         }
     }
 
