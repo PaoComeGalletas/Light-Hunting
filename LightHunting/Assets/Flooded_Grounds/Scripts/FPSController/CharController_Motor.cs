@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CharController_Motor : MonoBehaviour
 {
+   
     public float speed = 10.0f;
     public float sensitivity = 30.0f;
     public float WaterHeight = 15.5f;
@@ -20,6 +22,7 @@ public class CharController_Motor : MonoBehaviour
 
     void Start()
     {
+       
         character = GetComponent<CharacterController>();
         if (Application.isEditor)
         {
@@ -94,4 +97,5 @@ public class CharController_Motor : MonoBehaviour
             Cursor.visible = true;
         }
     }
+   
 }
